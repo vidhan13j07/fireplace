@@ -9,10 +9,18 @@
         <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
       </h1>
       <h1 class="search-results-header search-results-header-desktop">
-        {{ _plural('<b>"{search_query}"</b> returned {n} result',
+          {% if query %}
+                {{ _plural('<b>"{search_query}"</b> returned {n} result',
                    '<b>"{search_query}"</b> returned {n} results',
                    search_query=query|escape,
                    n=count) }}
+          {% else %}
+          {# An empty search on desktop should not say '"" returned X results'. (bug 1135210) #}
+                 {{ _plural('<b>"{search_query}"</b> returned {n} result',
+                   '<b>"{search_query}"</b> returned {n} results',
+                   search_query="Everything",
+                   n=count) }}
+          {% endif %}
         <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
       </h1>
     </div>
