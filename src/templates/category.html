@@ -6,7 +6,10 @@
   <div class="subheader cat-header">
     <h1 class="category-header-icon cat-{{ category }} cat-icon">
       {{ category_name }}
-      <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
+
+      {% if not isWebsiteCategories %}
+        <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
+      {% endif %}
     </h1>
     {% if showPersonalizationSubmenu %}
       {% include '_includes/personalization.html' %}
